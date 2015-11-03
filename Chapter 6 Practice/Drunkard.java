@@ -11,21 +11,14 @@ public class Drunkard
         {
             int intDirection = rand.nextInt(4);
             if (intDirection == 0)
-            {
-                
-            }
+                x += 1;
             else if (intDirection == 1)
-            {
-                
-            }
+                y += 1;
             else if (intDirection == 2)
-            {
-                
-            }
+                x -= 1;
             else
-            {
-                
-            }
+                y -= 1;
         }
+        System.out.println("( " + x + " , " + y + " )");
     }
 }
