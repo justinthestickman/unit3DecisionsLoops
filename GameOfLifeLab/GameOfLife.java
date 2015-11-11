@@ -20,6 +20,7 @@ public class GameOfLife
     // the game board will have 5 rows and 5 columns
     private final int ROWS = 15;
     private final int COLS = 15;
+    private final int CELLS = ROWS*COLS;
     
     /**
      * Default constructor for objects of class GameOfLife
@@ -103,7 +104,7 @@ public class GameOfLife
      * @post    the world has been populated with a new grid containing the next generation
      * 
      */
-    private void createNextGeneration()
+    public void createNextGeneration()
     {
         /** You will need to read the documentation for the World, Grid, and Location classes
          *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
@@ -113,7 +114,15 @@ public class GameOfLife
         Grid<Actor> grid = world.getGrid();
         
         // insert magic here...
-        
+        for (int r = 0; r < ROWS; r++)
+        {
+            for (int c = 0; c < COLS; c++)
+            {
+                Location loc = new Location(r,c);
+                Actor cell = grid.get(loc);
+                
+            }
+        }
     }
     
     /**
