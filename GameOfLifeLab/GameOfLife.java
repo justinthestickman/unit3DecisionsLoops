@@ -168,6 +168,11 @@ public class GameOfLife
     public static void main(String[] args)
     {
         GameOfLife game = new GameOfLife();
+        for (int i = 0; i < 20; i++)
+        {
+            game.createNextGeneration();
+            thread.sleep(1000);
+        }
     }
 
 }
