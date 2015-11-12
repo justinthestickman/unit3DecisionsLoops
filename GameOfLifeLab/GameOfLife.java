@@ -160,18 +160,17 @@ public class GameOfLife
         return COLS;
     }
     
-    
     /**
      * Creates an instance of this class. Provides convenient execution.
      *
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
         for (int i = 0; i < 20; i++)
         {
-            game.createNextGeneration();
-            thread.sleep(1000);
+           game.createNextGeneration();
+           Thread.sleep(1000);
         }
     }
 
