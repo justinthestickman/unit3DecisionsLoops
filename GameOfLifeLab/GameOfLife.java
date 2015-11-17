@@ -113,9 +113,9 @@ public class GameOfLife
         
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
-        ArrayList<Location> alive = new ArrayList<Location>();
-        ArrayList<Location> currAlive = new ArrayList<Location>();
-        ArrayList<Actor> neighbors = new ArrayList<Actor>();
+        ArrayList<Location> alive = new ArrayList<Location>(); //all cells that will be alive in the next generation
+        ArrayList<Location> die = new ArrayList<Location>(); //cells that are alive in the current generation but will be dead in the next generation
+        ArrayList<Actor> neighbors = new ArrayList<Actor>(); //the neighbors cells of each cell checked in the for loop, which resets each time the for loop checks a new cell
         
         // insert magic here...
         for (int r = 0; r < ROWS; r++)
@@ -131,18 +131,25 @@ public class GameOfLife
                 }
                 else if (cell != null)
                 {
-                    currAlive.add(loc);
                     if (neighbors.size() == 2 || neighbors.size() == 3)
                     {
                         alive.add(loc);
                     }
+                    else
+                    {
+                        die.add(loc);
+                    }
                 }
             }
         }
-        for (Location newloc : alive)
+        for (Location newloc : alive) //place all cells that will be alive in the next generation
         {
             Rock newrock = new Rock();
             grid.put(newloc,newrock);
+        }
+        for (Location newloc : die) //remove all cells that are alive in the current generation but will be dead in the next generation
+        {
+            grid.remove(newloc);
         }
     }
     
@@ -188,7 +195,7 @@ public class GameOfLife
     public static void main(String[] args) throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 16; i++)
         {
            game.createNextGeneration();
            Thread.sleep(1000);
