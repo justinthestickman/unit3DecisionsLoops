@@ -113,8 +113,8 @@ public class GameOfLife
         
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
-        ArrayList<Location> alive = new ArrayList<Location>(); //all cells that will be alive in the next generation
-        ArrayList<Location> die = new ArrayList<Location>(); //cells that are alive in the current generation but will be dead in the next generation
+        ArrayList<Location> alive = new ArrayList<Location>(); //locations of all cells that will be alive in the next generation
+        ArrayList<Location> die = new ArrayList<Location>(); //locations of cells that are alive in the current generation but will be dead in the next generation
         ArrayList<Actor> neighbors = new ArrayList<Actor>(); //the neighbors cells of each cell checked in the for loop, which resets each time the for loop checks a new cell
         
         // insert magic here...
@@ -125,19 +125,19 @@ public class GameOfLife
                 Location loc = new Location(r,c);
                 Actor cell = grid.get(loc);
                 neighbors = grid.getNeighbors(loc);
-                if (cell == null && neighbors.size() == 3)
+                if (cell == null && neighbors.size() == 3) // if cell is dead and has exactly 3 live neighbors
                 {
-                    alive.add(loc);
+                    alive.add(loc); //add to list of locations of all cells that will be alive in the next generation
                 }
-                else if (cell != null)
+                else if (cell != null) //if cell is alive
                 {
-                    if (neighbors.size() == 2 || neighbors.size() == 3)
+                    if (neighbors.size() == 2 || neighbors.size() == 3) //if live cell has exactly 2 or 3 live neighbors
                     {
-                        alive.add(loc);
+                        alive.add(loc); //add to list of locations of all cells that will be alive in the next generation
                     }
-                    else
+                    else //if live cell has too few or too many live neighbors
                     {
-                        die.add(loc);
+                        die.add(loc); //add to list of locations of cells that are alive in the current generation but will be dead in the next generation
                     }
                 }
             }
@@ -195,7 +195,7 @@ public class GameOfLife
     public static void main(String[] args) throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 20; i++)
         {
            game.createNextGeneration();
            Thread.sleep(1000);
